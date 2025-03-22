@@ -123,9 +123,15 @@ export function Contact() {
             className="lg:col-span-2"
           >
             <form
-              onSubmit={handleSubmit}
+              action="https://formsubmit.co/potnuriharshith@gmail.com"
+              method="POST"
               className="bg-gray-900/50 rounded-lg p-6 border border-gray-800 backdrop-blur-sm"
             >
+              <input type="hidden" name="_subject" value="New Contact Form Submission from Portfolio" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_next" value={typeof window !== 'undefined' ? window.location.href : ''} />
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div className="space-y-2">
                   <Label htmlFor="name">Your Name</Label>
@@ -133,8 +139,6 @@ export function Contact() {
                     id="name"
                     name="name"
                     placeholder="John Doe"
-                    value={formData.name}
-                    onChange={handleChange}
                     required
                     className="bg-gray-800/80 border-gray-700"
                   />
@@ -146,8 +150,6 @@ export function Contact() {
                     name="email"
                     type="email"
                     placeholder="john@example.com"
-                    value={formData.email}
-                    onChange={handleChange}
                     required
                     className="bg-gray-800/80 border-gray-700"
                   />
@@ -160,8 +162,6 @@ export function Contact() {
                   id="subject"
                   name="subject"
                   placeholder="How can I help you?"
-                  value={formData.subject}
-                  onChange={handleChange}
                   required
                   className="bg-gray-800/80 border-gray-700"
                 />
@@ -173,8 +173,6 @@ export function Contact() {
                   id="message"
                   name="message"
                   placeholder="Your message here..."
-                  value={formData.message}
-                  onChange={handleChange}
                   required
                   className="bg-gray-800/80 border-gray-700 min-h-[150px]"
                 />
@@ -183,25 +181,10 @@ export function Contact() {
               <Button
                 type="submit"
                 className="w-full group relative overflow-hidden"
-                disabled={isSubmitting || isSubmitted}
               >
-                {isSubmitting ? (
-                  <div className="flex items-center">
-                    <div className="animate-spin mr-2 h-4 w-4 border-2 border-white border-t-transparent rounded-full" />
-                    Sending...
-                  </div>
-                ) : isSubmitted ? (
-                  <div className="flex items-center">
-                    <svg className="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Sent Successfully!
-                  </div>
-                ) : (
-                  <div className="flex items-center">
-                    <Send className="mr-2 h-4 w-4" /> Send Message
-                  </div>
-                )}
+                <div className="flex items-center">
+                  <Send className="mr-2 h-4 w-4" /> Send Message
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Button>
             </form>
