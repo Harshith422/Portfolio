@@ -2,16 +2,28 @@
 
 import type React from "react"
 
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
 import { Mail, Phone, MapPin, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import Script from "next/script"
+
+// Add type declaration for EmailJS
+declare global {
+  interface Window {
+    emailjs: {
+      init: (publicKey: string) => void;
+      send: (serviceId: string, templateId: string, templateParams: Record<string, unknown>, publicKey: string) => Promise<any>;
+    };
+  }
+}
 
 export function Contact() {
   const ref = useRef<HTMLDivElement>(null)
+  const formRef = useRef<HTMLFormElement>(null)
   const isInView = useInView(ref, { once: false, amount: 0.1 })
 
   const [formData, setFormData] = useState({
@@ -23,33 +35,56 @@ export function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState("")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError("")
+    
+    try {
+      // Send email using emailjs
+      if (typeof window !== "undefined" && window.emailjs) {
+        const templateParams = {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }
+        
+        await window.emailjs.send(
+          "service_5vylpho",  // EmailJS service ID
+          "template_a5gw7mq", // EmailJS template ID
+          templateParams,
+          "XLnOdFqKpzaXYpB_h"  // EmailJS public key
+        )
 
-    // Simulate form submission
-    setTimeout(() => {
-      console.log("Form submitted:", formData)
+        setIsSubmitted(true)
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        })
+        
+        // Reset submission status after 3 seconds
+        setTimeout(() => {
+          setIsSubmitted(false)
+        }, 3000)
+      } else {
+        throw new Error("EmailJS not loaded")
+      }
+    } catch (err) {
+      console.error("Error sending email:", err)
+      setError("Failed to send message. Please try again or contact me directly via email.")
+    } finally {
       setIsSubmitting(false)
-      setIsSubmitted(true)
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      })
-
-      // Reset submission status after 3 seconds
-      setTimeout(() => {
-        setIsSubmitted(false)
-      }, 3000)
-    }, 1500)
+    }
   }
 
   const contactInfo = [
@@ -75,6 +110,16 @@ export function Contact() {
 
   return (
     <section id="contact" ref={ref} className="py-20 relative overflow-hidden">
+      <Script 
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+        strategy="lazyOnload"
+        onLoad={() => {
+          if (typeof window !== "undefined") {
+            window.emailjs.init("XLnOdFqKpzaXYpB_h")
+          }
+        }}
+      />
+      
       <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black"></div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -123,15 +168,10 @@ export function Contact() {
             className="lg:col-span-2"
           >
             <form
-              action="https://formsubmit.co/potnuriharshith@gmail.com"
-              method="POST"
+              ref={formRef}
+              onSubmit={handleSubmit}
               className="bg-gray-900/50 rounded-lg p-6 border border-gray-800 backdrop-blur-sm"
             >
-              <input type="hidden" name="_subject" value="New Contact Form Submission from Portfolio" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_next" value={typeof window !== 'undefined' ? window.location.href : ''} />
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div className="space-y-2">
                   <Label htmlFor="name">Your Name</Label>
@@ -139,6 +179,8 @@ export function Contact() {
                     id="name"
                     name="name"
                     placeholder="John Doe"
+                    value={formData.name}
+                    onChange={handleChange}
                     required
                     className="bg-gray-800/80 border-gray-700"
                   />
@@ -150,6 +192,8 @@ export function Contact() {
                     name="email"
                     type="email"
                     placeholder="john@example.com"
+                    value={formData.email}
+                    onChange={handleChange}
                     required
                     className="bg-gray-800/80 border-gray-700"
                   />
@@ -162,6 +206,8 @@ export function Contact() {
                   id="subject"
                   name="subject"
                   placeholder="How can I help you?"
+                  value={formData.subject}
+                  onChange={handleChange}
                   required
                   className="bg-gray-800/80 border-gray-700"
                 />
@@ -173,18 +219,41 @@ export function Contact() {
                   id="message"
                   name="message"
                   placeholder="Your message here..."
+                  value={formData.message}
+                  onChange={handleChange}
                   required
                   className="bg-gray-800/80 border-gray-700 min-h-[150px]"
                 />
               </div>
+              
+              {error && (
+                <div className="mb-4 p-3 rounded-md bg-red-500/20 border border-red-500/30 text-red-200">
+                  {error}
+                </div>
+              )}
 
               <Button
                 type="submit"
                 className="w-full group relative overflow-hidden"
+                disabled={isSubmitting || isSubmitted}
               >
-                <div className="flex items-center">
-                  <Send className="mr-2 h-4 w-4" /> Send Message
-                </div>
+                {isSubmitting ? (
+                  <div className="flex items-center">
+                    <div className="animate-spin mr-2 h-4 w-4 border-2 border-white border-t-transparent rounded-full" />
+                    Sending...
+                  </div>
+                ) : isSubmitted ? (
+                  <div className="flex items-center">
+                    <svg className="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Sent Successfully!
+                  </div>
+                ) : (
+                  <div className="flex items-center">
+                    <Send className="mr-2 h-4 w-4" /> Send Message
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Button>
             </form>
