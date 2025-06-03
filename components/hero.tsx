@@ -102,9 +102,10 @@ export function Hero() {
                   className="rounded-full px-8 py-2 hover:scale-105 transition-transform"
                   asChild
                 >
-                  <a href="/RESUME_SD.pdf" target="_blank" rel="noopener noreferrer">
-                    Download CV
-                  </a>
+                <a href="/Resume_SD.pdf" download aria-label="Download Resume as PDF">
+                  Download CV
+                </a>
+
                 </Button>
               </div>
             </motion.div>
