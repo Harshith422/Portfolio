@@ -97,7 +97,7 @@ export function About() {
             <div className="space-y-4">
               <h3 className="text-3xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">I'm Harshith Potnuri</h3>
               <p className="text-gray-300 leading-relaxed text-lg">
-                As a passionate third-year B.Tech student specializing in Artificial Intelligence Engineering at Amrita Vishwa Vidyapeetham, I'm on a mission to bridge the gap between cutting-edge AI theory and impactful real-world applications. With a strong foundation in machine learning, computer vision, and natural language processing, I've consistently delivered innovative solutions to complex problems.
+                I am a dedicated B.Tech student specializing in Artificial Intelligence Engineering at Amrita Vishwa Vidyapeetham. Driven by a passion for applying advanced AI concepts to real-world challenges, I focus on bridging the gap between theoretical knowledge and practical impact. With a solid foundation in machine learning, computer vision, and natural language processing, I have consistently developed innovative solutions to complex problems.
               </p>
             </div>
 
@@ -165,7 +165,7 @@ export function About() {
 
             <div className="mt-6">
               <Button asChild className="w-full group relative overflow-hidden">
-                <a href="/s.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                <a href="/RESUME_SD.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
                   <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 16L7 11M12 16L17 11M12 16V4M4 20H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
@@ -187,10 +187,7 @@ export function About() {
                   Photography
                 </Badge>
                 <Badge variant="secondary" className="bg-gray-800/80 hover:bg-purple-600/30 transition-colors py-1.5 text-sm">
-                  Writing a Personal Diary
-                </Badge>
-                <Badge variant="secondary" className="bg-gray-800/80 hover:bg-purple-600/30 transition-colors py-1.5 text-sm">
-                  Puzzle Solving
+                  Playing Guitar
                 </Badge>
                 <Badge variant="secondary" className="bg-gray-800/80 hover:bg-purple-600/30 transition-colors py-1.5 text-sm">
                   Open Source Contribution
@@ -212,9 +209,6 @@ export function About() {
                 </Badge>
                 <Badge variant="secondary" className="bg-gray-800/80 hover:bg-blue-600/30 transition-colors py-1.5 text-sm">
                   Hindi
-                </Badge>
-                <Badge variant="secondary" className="bg-gray-800/80 hover:bg-blue-600/30 transition-colors py-1.5 text-sm">
-                  Tamil
                 </Badge>
               </div>
             </div>

@@ -16,46 +16,22 @@ export function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [error, setError] = useState("")
 
   // Handle form submission state
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleSubmit = (e: React.FormEvent) => {
     setIsSubmitting(true)
-    setError("")
     
-    const form = e.currentTarget
-    const formData = new FormData(form)
-    
-    fetch("https://formspree.io/f/xldjbeln", {
-      method: "POST",
-      body: formData,
-      headers: {
-        Accept: "application/json"
-      }
-    })
-    .then(response => {
-      if (response.ok) {
-        setIsSubmitted(true)
-        form.reset()
-      } else {
-        throw new Error("Form submission failed")
-      }
-    })
-    .catch(error => {
-      console.error("Error:", error)
-      setError("Something went wrong. Please try again or email me directly.")
-    })
-    .finally(() => {
+    // Reset submission status after form is submitted
+    // This will show the loading state briefly before the page redirects
+    setTimeout(() => {
       setIsSubmitting(false)
+      setIsSubmitted(true)
       
       // Reset submission status after 3 seconds
-      if (isSubmitted) {
-        setTimeout(() => {
-          setIsSubmitted(false)
-        }, 3000)
-      }
-    })
+      setTimeout(() => {
+        setIsSubmitted(false)
+      }, 3000)
+    }, 1000)
   }
 
   const contactInfo = [
@@ -129,9 +105,24 @@ export function Contact() {
             className="lg:col-span-2"
           >
             <form
+              action="https://formsubmit.co/potnuriharshith@gmail.com"
+              method="POST"
               onSubmit={handleSubmit}
               className="bg-gray-900/50 rounded-lg p-6 border border-gray-800 backdrop-blur-sm"
             >
+              {/* FormSubmit Configuration */}
+              <input type="hidden" name="_subject" value="New message from Portfolio Website" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="text" name="_honey" style={{ display: 'none' }} /> {/* Honeypot for spam prevention */}
+              
+              {/* After submission, redirect back to the same page with a hash to show the contact section */}
+              <input 
+                type="hidden" 
+                name="_next" 
+                value={typeof window !== 'undefined' ? `${window.location.origin}${window.location.pathname}#contact` : '#contact'} 
+              />
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div className="space-y-2">
                   <Label htmlFor="name">Your Name</Label>
@@ -177,12 +168,6 @@ export function Contact() {
                   className="bg-gray-800/80 border-gray-700 min-h-[150px]"
                 />
               </div>
-
-              {error && (
-                <div className="mb-4 p-3 bg-red-500/20 border border-red-500/30 text-red-200 rounded-md">
-                  {error}
-                </div>
-              )}
 
               <Button
                 type="submit"

@@ -8,6 +8,7 @@ import { About } from "@/components/about"
 import { Projects } from "@/components/projects"
 import { Skills } from "@/components/skills"
 import { Experience } from "@/components/experience"
+import { Responsibility } from "@/components/responsibility"
 import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
 import { Loader } from "@/components/loader"
@@ -41,6 +42,7 @@ export default function Home() {
           <Projects />
           <Skills />
           <Experience />
+          <Responsibility />
           <Contact />
         </main>
         <Footer />
@@ -48,4 +50,3 @@ export default function Home() {
     </ThemeProvider>
   )
 }
-

@@ -20,7 +20,7 @@ export function Navbar() {
       setScrolled(window.scrollY > 10)
 
       // Determine active section based on scroll position
-      const sections = ["home", "about", "projects", "skills", "experience", "contact"]
+      const sections = ["home", "about", "projects", "skills", "contact"]
       for (const section of sections.reverse()) {
         const element = document.getElementById(section)
         if (element && window.scrollY >= element.offsetTop - 200) {
@@ -39,7 +39,6 @@ export function Navbar() {
     { name: "About", href: "#about" },
     { name: "Projects", href: "#projects" },
     { name: "Skills", href: "#skills" },
-    { name: "Experience", href: "#experience" },
     { name: "Contact", href: "#contact" },
   ]
 
@@ -157,7 +156,7 @@ export function Navbar() {
           ))}
           <motion.div variants={navItemVariants} custom={navLinks.length} initial="hidden" animate="visible">
             <a
-              href="/s.pdf"
+              href="/RESUME_SD.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="ml-4 px-5 py-2 rounded-full bg-primary/10 border border-primary/50 text-primary hover:bg-primary/20 transition-colors flex items-center group"
@@ -231,7 +230,7 @@ export function Navbar() {
               ))}
               <motion.div variants={mobileNavItemVariants} className="pt-4 w-full flex justify-center">
                 <a
-                  href="/s.pdf"
+                  href="/RESUME_SD.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-3 rounded-full bg-primary/10 border border-primary/50 text-primary hover:bg-primary/20 transition-colors flex items-center"

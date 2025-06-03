@@ -102,7 +102,7 @@ export function Hero() {
                   className="rounded-full px-8 py-2 hover:scale-105 transition-transform"
                   asChild
                 >
-                  <a href="/s.pdf" target="_blank" rel="noopener noreferrer">
+                  <a href="/RESUME_SD.pdf" target="_blank" rel="noopener noreferrer">
                     Download CV
                   </a>
                 </Button>
