@@ -50,7 +50,7 @@ export function Contact() {
     {
       icon: <MapPin className="h-6 w-6 text-primary" />,
       title: "Location",
-      value: "Coimbatore, India",
+      value: "Visakhapatnam, India",
       link: "#",
     },
   ]

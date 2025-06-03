@@ -165,7 +165,7 @@ export function About() {
 
             <div className="mt-6">
               <Button asChild className="w-full group relative overflow-hidden">
-                <a href="/RESUME_SD.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                <a href="/Resume_SD.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
                   <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 16L7 11M12 16L17 11M12 16V4M4 20H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>

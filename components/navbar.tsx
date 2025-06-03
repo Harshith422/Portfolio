@@ -156,7 +156,7 @@ export function Navbar() {
           ))}
           <motion.div variants={navItemVariants} custom={navLinks.length} initial="hidden" animate="visible">
             <a
-              href="/RESUME_SD.pdf"
+              href="/Resume_SD.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="ml-4 px-5 py-2 rounded-full bg-primary/10 border border-primary/50 text-primary hover:bg-primary/20 transition-colors flex items-center group"
@@ -230,7 +230,7 @@ export function Navbar() {
               ))}
               <motion.div variants={mobileNavItemVariants} className="pt-4 w-full flex justify-center">
                 <a
-                  href="/RESUME_SD.pdf"
+                  href="/Resume_SD.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-3 rounded-full bg-primary/10 border border-primary/50 text-primary hover:bg-primary/20 transition-colors flex items-center"
