@@ -5,6 +5,7 @@ import Link from "next/link"
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { Menu, X, Code, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { ResumeDropdown } from "@/components/ResumeDropdown"
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -155,15 +156,7 @@ export function Navbar() {
             </motion.div>
           ))}
           <motion.div variants={navItemVariants} custom={navLinks.length} initial="hidden" animate="visible">
-            <a
-              href="/Resume_SD.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-4 px-5 py-2 rounded-full bg-primary/10 border border-primary/50 text-primary hover:bg-primary/20 transition-colors flex items-center group"
-            >
-              Resume
-              <ChevronRight className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
-            </a>
+            <ResumeDropdown variant="outline" size="sm" />
           </motion.div>
         </nav>
 
@@ -229,15 +222,7 @@ export function Navbar() {
                 </motion.div>
               ))}
               <motion.div variants={mobileNavItemVariants} className="pt-4 w-full flex justify-center">
-                <a
-                  href="/Resume_SD.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-3 rounded-full bg-primary/10 border border-primary/50 text-primary hover:bg-primary/20 transition-colors flex items-center"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Resume <ChevronRight className="w-4 h-4 ml-1" />
-                </a>
+                <div className="flex justify-center w-full"><ResumeDropdown variant="outline" size="lg" /></div>
               </motion.div>
             </nav>
           </motion.div>

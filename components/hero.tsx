@@ -6,6 +6,8 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { TypewriterEffect } from "@/components/typewriter-effect"
 import { BackgroundBeams } from "@/components/background-beams"
+import { ResumeDropdown } from "@/components/ResumeDropdown"
+import { Github, Linkedin } from "lucide-react"
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -77,6 +79,28 @@ export function Hero() {
                 <TypewriterEffect words={words} />
               </div>
 
+              {/* GitHub & LinkedIn */}
+              <div className="flex items-center gap-4 justify-center lg:justify-start mt-6">
+                <a
+                  href="https://github.com/Harshith422"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub Profile"
+                  className="p-3 rounded-full bg-gray-800/80 border border-purple-500/30 text-gray-300 hover:text-white hover:bg-purple-600/30 hover:border-purple-400/50 hover:scale-110 transition-all duration-300"
+                >
+                  <Github className="w-6 h-6" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/harshith-potnuri-144har"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn Profile"
+                  className="p-3 rounded-full bg-gray-800/80 border border-purple-500/30 text-gray-300 hover:text-white hover:bg-purple-600/30 hover:border-purple-400/50 hover:scale-110 transition-all duration-300"
+                >
+                  <Linkedin className="w-6 h-6" />
+                </a>
+              </div>
+
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start mt-8">
                 <Button
                   size="lg"
@@ -96,17 +120,7 @@ export function Hero() {
                 >
                   <a href="#contact">Contact Me</a>
                 </Button>
-                <Button
-                  variant="secondary"
-                  size="lg"
-                  className="rounded-full px-8 py-2 hover:scale-105 transition-transform"
-                  asChild
-                >
-                <a href="/Resume_SD.pdf" download aria-label="Download Resume as PDF">
-                  Download CV
-                </a>
-
-                </Button>
+                <ResumeDropdown variant="secondary" size="lg" />
               </div>
             </motion.div>
           </motion.div>
@@ -122,7 +136,7 @@ export function Hero() {
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-transparent rounded-2xl" />
               <div className="absolute inset-0 backdrop-blur-[1px] rounded-2xl overflow-hidden">
                 <Image
-                  src="/home_pht.jpg"
+                  src="/3.jpeg"
                   alt="Harshith Potnuri"
                   fill
                   className="object-cover rounded-2xl"

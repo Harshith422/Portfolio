@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useRef, useState } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { ExternalLink, Github, Home, Cloud, Activity, ChevronRight, X } from "lucide-react"
@@ -36,51 +35,89 @@ export function Projects() {
   const projects: ProjectType[] = [
     {
       id: 1,
-      title: "Real Estate - 360",
-      period: "Nov 2024 - Apr 2025",
+      title: "Realestate360",
+      period: "– Present",
       description:
-        "Enhances property discovery by integrating QR codes in newspaper ads, allowing users to instantly access real-time property details, nearby amenities, and route mapping.",
+        "A comprehensive real estate platform that combines property listings with advanced data analytics and machine learning to provide market insights and price predictions.",
       longDescription:
-        "This innovative real estate platform revolutionizes property discovery by seamlessly integrating QR codes in traditional newspaper advertisements. Users can instantly access comprehensive property information, view real-time details, explore nearby amenities, and map optimal routes to properties. The platform facilitates informed decision-making for buyers while providing real estate agents with a modern, interactive way to showcase properties. Built with React.js for the frontend, Node.js for the backend, and leveraging AWS services for scalability and Google Maps API for location-based features.",
-      technologies: ["React.js", "Node.js", "AWS", "Google Maps API", "QR Code Integration"],
+        "Browse, filter, and manage properties with integrated authentication and advanced analytics: property price predictions, trend visualization, ROI analysis. Upload/edit listings, book appointments, and analyze data – all powered by ML models on a React/Node.js/Python stack.",
+      technologies: ["React.js", "Node.js", "Python", "Machine Learning", "Chart.js", "Google Maps", "Flask"],
       category: "Full-Stack",
       icon: <Home className="w-10 h-10 text-blue-500" />,
       image: "/real_estate_image.jpeg",
       links: {
-        github: "https://github.com/Harshith422/Realestate360",
-      },
+        demo: "https://realestate360-frontend.onrender.com",
+        github: "https://github.com/Harshith422/Realestate360"
+      }
     },
     {
       id: 2,
       title: "Cloud-Based Video Streaming Platform",
-      period: "Feb 2024 - Jul 2024",
-      description:
-        "Enables seamless, secure video storage and streaming, ensuring high-performance content delivery with AWS Cognito for authentication and S3 for storage.",
+      period: "– Present",
+      description: "Secure, scalable video storage and streaming using AWS S3, Cognito, Node.js and REST API.",
       longDescription:
-        "This comprehensive cloud-based video streaming platform enables seamless, secure video storage and streaming, ensuring high-performance content delivery across devices. AWS Cognito ensures robust user authentication and access control, while AWS S3 provides scalable, reliable storage for video content. The platform features an intuitive user interface built with modern web technologies, optimized video playback, and adaptive streaming capabilities. Ideal for educational platforms, content creators, and businesses requiring secure and efficient video hosting, this solution offers a complete end-to-end system for managing and distributing video content.",
-      technologies: ["AWS", "Node.js", "HTML", "CSS", "JavaScript", "S3", "Cognito"],
+        "Users upload and view videos with robust authentication/roles (guests/registered). Managed via AWS (S3, Cognito, IAM), the Node.js backend exposes REST APIs. Frontend is raw JS and HTML, deployed on cloud. Built for high-quality, secure content delivery.",
+      technologies: ["AWS S3", "AWS Cognito", "Node.js", "REST API", "IAM", "HTML", "CSS", "JavaScript"],
       category: "Cloud Computing",
-      icon: <Cloud className="w-10 h-10 text-purple-500" />,
+      icon: <Cloud className="w-10 h-10 text-purple-500" />, 
       image: "/video_streaming_image.jpg",
       links: {
-        github: "https://github.com/Harshith422/video_streaming_aws",
-      },
+        github: "https://github.com/Harshith422/video_streaming_aws"
+      }
     },
     {
       id: 3,
-      title: "Detection of Cardiovascular Diseases",
-      period: "Nov 2023 - Jan 2024",
-      description:
-        "Advances in early detection of cardiovascular diseases using non-invasive ECG and PCG analysis with machine learning-based classification.",
+      title: "Hospital Management System (HMS)",
+      period: "– Present",
+      description: "Role-based hospital platform for managing appointments, patients, doctors, billing, and records.",
       longDescription:
-        "This innovative medical technology project advances the early detection of cardiovascular diseases through non-invasive electrocardiogram (ECG) and phonocardiogram (PCG) signal analysis. The system applies sophisticated signal processing techniques, including Continuous Wavelet Transform (CWT) for feature extraction, and leverages both traditional machine learning (Support Vector Machines) and deep learning (hybrid CNN-LSTM model) approaches to capture spatial and temporal patterns in cardiac signals. The solution significantly improves diagnostic accuracy, helping healthcare professionals identify heart conditions efficiently, reducing misdiagnoses, and enabling timely medical intervention. This technology has potential applications in clinical settings, remote patient monitoring, and preventive healthcare.",
-      technologies: ["Python", "NumPy", "SciPy", "TensorFlow", "SVM", "CNN-LSTM"],
-      category: "Machine Learning",
-      icon: <Activity className="w-10 h-10 text-red-500" />,
+        "Supports Patients, Doctors, Managers, and Receptionists. Features robust PostgreSQL schema, role-based authentication, and extensible billing/reports (planned PDF/GUI/email upgrades). Backend in Python (psycopg2), strong data separation for users.",
+      technologies: ["Python", "PostgreSQL", "psycopg2", "Authentication", "Command Line"],
+      category: "Database App",
+      icon: <Home className="w-10 h-10 text-green-500" />, 
+      image: "/Hospital-Management.jpg",
+      links: {}
+    },
+    {
+      id: 4,
+      title: "Legal Document Analyzer & Summarizer",
+      period: "– Present",
+      description: "NLP-powered tool to extract, classify, assess risk, and summarize clauses from legal documents (contracts) using deep learning.",
+      longDescription:
+        "Automates legal doc review via clause extraction, classification (Word2Vec, KMeans, BiLSTM-Attention), risk scoring, and clause summarization. Deploys with PDF/txt upload and interactive results. Used CUAD dataset; BiLSTM-Attention model; future upgrades planned.",
+      technologies: ["Python", "NLP", "Deep Learning", "BiLSTM", "Word2Vec", "scikit-learn", "PyTorch"],
+      category: "AI/NLP",
+      icon: <Activity className="w-10 h-10 text-yellow-500" />, 
+      image: "/legal_summarizer.jpeg",
+      links: {}
+    },
+    {
+      id: 5,
+      title: "Detection of Cardiovascular Diseases",
+      period: "– Present",
+      description: "Detects cardiovascular diseases from ECG/PCG signals using ML (SVM) and hybrid deep learning (CNN-LSTM).",
+      longDescription:
+        "Signal preprocessing and feature extraction followed by binary/multiclass classification for disease detection. SVM for classic ML, CNN-LSTM hybrid for deep learning, data from bandpass filtered signals. Command-line, Python-based, academic/research project.",
+      technologies: ["Python", "Machine Learning", "Signal Processing", "SVM", "CNN-LSTM"],
+      category: "AI/Healthcare",
+      icon: <Activity className="w-10 h-10 text-red-500" />, 
       image: "/cardiovascular_image.jpg",
       links: {
-        github: "https://github.com/Harshith422/Detection-of-Cardiovascular-Diseases-Using-Heart-Sound-Analysis",
-      },
+        github: "https://github.com/Harshith422/Detection-of-Cardiovascular-Diseases-Using-Heart-Sound-Analysis"
+      }
+    },
+    {
+      id: 6,
+      title: "Land Cover Classification (Satellite Imagery)",
+      period: "– Present",
+      description: "Deep learning system for multi-label land cover classification from satellite (Sentinel-2) imagery with RGB and spectral bands.",
+      longDescription:
+        "Hybrid CNN with ESRGAN super-res, attention mechanism, and Gradio deployment. Uses EuroSAT dataset, achieves >95% val accuracy, multi-label prediction (top-2). Python, PCA for bands, multi-stream CNN for fusion, deployed as Gradio app.",
+      technologies: ["Python", "Deep Learning", "Satellite Imagery", "ESRGAN", "Gradio", "CNN", "Attention"],
+      category: "AI/Remote Sensing",
+      icon: <Cloud className="w-10 h-10 text-blue-500" />,
+      image: "/land_cover_classfication.jpeg",
+      links: {}
     },
   ]
 
@@ -135,7 +172,6 @@ export function Projects() {
   return (
     <section id="projects" ref={ref} className="py-20 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-black/95 to-black"></div>
-
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -150,7 +186,6 @@ export function Projects() {
             learning.
           </p>
         </motion.div>
-
         {/* Category Filter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -175,7 +210,6 @@ export function Projects() {
             </Button>
           ))}
         </motion.div>
-
         {/* Projects Grid */}
         <motion.div
           variants={containerVariants}
@@ -211,7 +245,6 @@ export function Projects() {
                       </Badge>
                     </div>
                   </div>
-
                   <CardHeader className="relative">
                     <div className="space-y-1">
                       <CardTitle className="text-xl group-hover:text-primary transition-colors">
@@ -220,7 +253,6 @@ export function Projects() {
                       <p className="text-sm text-gray-400">{project.period}</p>
                     </div>
                   </CardHeader>
-
                   <CardContent className="space-y-4">
                     <CardDescription className="text-gray-400 line-clamp-3">{project.description}</CardDescription>
                     <div className="flex flex-wrap gap-2">
@@ -236,7 +268,6 @@ export function Projects() {
                       )}
                     </div>
                   </CardContent>
-
                   <CardFooter className="flex justify-between">
                     <Button variant="outline" size="sm" onClick={() => setSelectedProject(project)}>
                       Details
@@ -251,7 +282,6 @@ export function Projects() {
                       )}
                     </div>
                   </CardFooter>
-
                   {/* Hover Glow Effect */}
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/0 via-primary/30 to-primary/0 rounded-lg opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 -z-10"></div>
                 </Card>
@@ -259,7 +289,6 @@ export function Projects() {
             </motion.div>
           ))}
         </motion.div>
-
         {/* Project Details Modal */}
         <AnimatePresence>
           {selectedProject && (
@@ -272,7 +301,6 @@ export function Projects() {
                 className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
                 onClick={() => setSelectedProject(null)}
               />
-
               <motion.div
                 variants={modalVariants}
                 initial="hidden"
@@ -305,7 +333,6 @@ export function Projects() {
                       <p className="text-sm text-gray-300">{selectedProject.period}</p>
                     </div>
                   </div>
-
                   <div className="p-6 space-y-6">
                     <div>
                       <h4 className="text-lg font-semibold mb-2">Description</h4>
@@ -313,7 +340,6 @@ export function Projects() {
                         {selectedProject.longDescription || selectedProject.description}
                       </p>
                     </div>
-
                     <div>
                       <h4 className="text-lg font-semibold mb-2">Technologies</h4>
                       <div className="flex flex-wrap gap-2">
@@ -324,7 +350,6 @@ export function Projects() {
                         ))}
                       </div>
                     </div>
-
                     <div className="flex justify-between pt-4 border-t border-gray-800">
                       <Button variant="outline" onClick={() => setSelectedProject(null)}>
                         Close
@@ -345,7 +370,6 @@ export function Projects() {
             </>
           )}
         </AnimatePresence>
-
         {/* Project Navigation */}
         <div className="mt-12 flex justify-center">
           <Button variant="outline" size="lg" className="rounded-full px-8 group" asChild>
@@ -359,4 +383,3 @@ export function Projects() {
     </section>
   )
 }
-
